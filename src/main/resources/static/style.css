@@ -1,0 +1,32 @@
+@charset "ISO-8859-1";
+* {
+	padding: 0px;
+	margin: 0px;
+	box-sizing: border-box;
+}
+
+#result-box ul {
+	margin: 0; /* Remove default margin */
+	padding: 0; /* Remove default padding */
+	list-style: none; /* Remove default list-style */
+	border-radius: 5px;
+}
+
+#result-box ul li {
+	cursor: pointer;
+	margin: 0; /* Remove default margin */
+	padding: 10px; /* Remove default padding */
+	background: grey;
+	box-shadow: 10px;
+	color: white;
+}
+
+#result-box ul  li:hover {
+	background: black;
+	color: white;
+}
+
+#result-box {
+	max-height: 200px;
+	overflow-y: scroll;
+}
