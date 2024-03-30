@@ -50,8 +50,9 @@ public class ProductController {
 	}
 	
 	@PostMapping("/add_product")
-	public String addProduct(@ModelAttribute Product product)
+	public String addProduct(@ModelAttribute Product product, @RequestParam("image_add") String imgAdd)
 	{
+		product.setImageAdd(imgAdd);
 		productService.addProduct(product);
 		return "redirect:/home";
 	}
