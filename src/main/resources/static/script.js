@@ -323,6 +323,7 @@ function searchProduct() {
 
 	let search = searchBar.value;
 	if (search.length > 0) {
+	    console.log(search)
 		fetch('http://localhost:8080/product/search/' + search)
 			.then(response => {
 				return response.json()

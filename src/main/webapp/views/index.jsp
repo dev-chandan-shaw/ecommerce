@@ -12,6 +12,9 @@
 <meta charset="ISO-8859-1">
 <title>Shawping | Home</title>
 <style type="text/css">
+@import
+url('https://fonts.googleapis.com/css2?family=Arvo:ital,wght@0,400;0,700;1,400;1,700&family=Croissant+One&family=Dancing+Script:wght@500&family=Farsan&family=Lobster+Two&family=Poor+Story&family=Tilt+Prism&display=swap')
+
 * {
 	margin: 0px;
 	padding: 0px;
@@ -98,15 +101,7 @@ margin: 0px;
 	color: white;
 }
 </style>
-<style>
-@import
-url('https://fonts.googleapis.com/css2?family=Arvo:ital,wght@0,400;0,700;1,400;1,700&family=Croissant+One&family=Dancing+Script:wght@500&family=Farsan&family=Lobster+Two&family=Poor+Story&family=Tilt+Prism&display=swap')
-</style>
-<link
-	href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
-	rel="stylesheet"
-	integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
-	crossorigin="anonymous">
+
 </head>
 <body>
 	<jsp:include page="header.jsp"></jsp:include>
@@ -182,7 +177,6 @@ url('https://fonts.googleapis.com/css2?family=Arvo:ital,wght@0,400;0,700;1,400;1
 			</div>
 		</div>
 	</div>
-	
 	<jsp:include page="footer.jsp"></jsp:include>
 </body>
 </html>

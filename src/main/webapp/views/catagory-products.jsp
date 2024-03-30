@@ -8,7 +8,7 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<title>Category Products</title>
 <style type="text/css">
 * {
 	margin: 0px;
@@ -48,7 +48,6 @@
 
 			// Format the number using DecimalFormat
 
-			@SuppressWarnings("unchecked")
 			List<Product> productList = (List<Product>) session.getAttribute("catagoryProducts");
 			%>
 			<%

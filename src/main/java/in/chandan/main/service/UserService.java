@@ -1,6 +1,7 @@
 package in.chandan.main.service;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import in.chandan.main.entity.Cart;
@@ -16,6 +17,8 @@ import in.chandan.main.entity.Product;
 import in.chandan.main.entity.User;
 import in.chandan.main.repository.CartItemRepo;
 import in.chandan.main.repository.UserRepo;
+
+import javax.servlet.http.HttpSession;
 
 @Service
 public class UserService {
@@ -53,7 +56,7 @@ public class UserService {
 		return user;
 	}
 	
-	public Map<String, Object> updateQuantity(int quantity, int cartItemId, String updateStatus) {
+	public Map<String, Object> updateQuantity(int quantity, int cartItemId, String updateStatus, User user) {
 		// TODO Auto-generated method stub
 		Map<String, Object> response = new HashMap<>();
 		CartItem cartItem = cartItemRepo.findById(cartItemId).get();
@@ -79,10 +82,29 @@ public class UserService {
 				response.put("msg", "You can buy only up to '" +quantity+ "' units of '" + product.getName() + "'");
 			}
 		}
-		
+
 		// below code will run for increment quantity
+
 		response.put("quantity", quantity);
 		response.put("amount", (quantity)*product.getPrice());
+
+
+		// Setting values in the database
+
+		Cart cart = user.getCart();
+
+		List<CartItem> cartItems = cart.getCartItems();
+
+		for (CartItem item : cartItems) {
+			if (item.getId() == cartItemId) {
+				item.setQuantity(quantity);
+				item.setPrice((quantity)*product.getPrice());
+				cartItemRepo.save(cartItem);
+			}
+		}
+		cart.setCartItems(cartItems);
+		cartRepo.save(cart);
+
 		return response;
 	}
 }
