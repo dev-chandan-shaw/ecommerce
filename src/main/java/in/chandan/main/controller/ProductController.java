@@ -85,6 +85,8 @@ public class ProductController {
 		String quantityStatus = data.get("status");
 		User user = (User) session.getAttribute("currentUser");
 
+		System.out.println("Update the quantity");
+
 		return userService.updateQuantity(quantity, cartItemId, quantityStatus, user);
 	}
 
@@ -104,7 +106,6 @@ public class ProductController {
 		session.setAttribute("previousReview", review);
 		return "add-review";
 	}
-	
 	
 	@PostMapping("/submitReview")
 	@ResponseBody

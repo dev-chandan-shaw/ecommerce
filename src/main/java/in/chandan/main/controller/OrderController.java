@@ -35,26 +35,29 @@ public class OrderController {
     @Autowired
     CartRepo cartRepo;
 
-    @GetMapping("/place_order")
+    @GetMapping("/place-order")
     public String openCartCheckoutPage(HttpSession session) {
         User user = (User) session.getAttribute("currentUser");
         List<Address> addressList = addressRepo.findByUser(user);
         session.setAttribute("address", addressList);
-        return "cart-chekout";
+        Cart cart = cartRepo.findById(user.getCart().getId()).get();
+        session.setAttribute("cartItemList", cart.getCartItems());
+        return "cart-checkout";
     }
 
 
 
 
-    @PostMapping("/confirm_checkout")
+    @PostMapping("/confirm-checkout")
     @ResponseBody
-    public MyOrder confirmChekout(@RequestBody Map<String, Object> req, HttpSession session) throws RazorpayException {
+    public MyOrder confirmCheckout(@RequestBody Map<String, Object> req, HttpSession session) throws RazorpayException {
         System.out.println(req.get("cartItemsId") + "my cart items id");
         MyOrder myOrder = new MyOrder();
         User user = (User) session.getAttribute("currentUser");
         List<OrderItem> orderItems = myOrder.getOrderItems();
         @SuppressWarnings("unchecked")
         List<String> cartItemsIdList = (List<String>) req.get("cartItemsId");
+        System.out.println("cartItemsIdList size is : " + cartItemsIdList.size());
         for (String id : cartItemsIdList) {
             CartItem cartItem = cartItemRepo.findById(Integer.parseInt(id)).get();
             OrderItem orderItem = new OrderItem();
@@ -100,7 +103,7 @@ public class OrderController {
         Cart cart = user.getCart();
         List<CartItem> cartItems = cart.getCartItems();
         cartItemRepo.deleteAllInBatch(cartItems);
-        cartItems.removeAll(cartItems);
+        cartItems.clear();
         cart.setCartItems(cartItems);
         cartRepo.save(cart);
         session.setAttribute("items", 0);

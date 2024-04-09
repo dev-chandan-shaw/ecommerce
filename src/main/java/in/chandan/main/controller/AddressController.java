@@ -19,7 +19,7 @@ public class AddressController {
     @Autowired
     AddressRepo addressRepo;
 
-    @PostMapping("/update_address_from_profile")
+    @PostMapping("/update-address")
     public String updateAddressFromProfile(
             @RequestParam("houseno") String houseno,
             @RequestParam("locality") String locality,
@@ -48,7 +48,6 @@ public class AddressController {
         }
         List<Address> addresses = addressRepo.findByUser(user);
         session.setAttribute("addressList", addresses);
-        System.out.println("This functin has run");
         String referrer = request.getHeader("referer");
         return "redirect:"+referrer;
     }
@@ -63,25 +62,17 @@ public class AddressController {
         session.setAttribute("addressList", addresses);
         return "address";
     }
-    @PostMapping("/add_new_address")
-    public String addNewAddress(
+    @PostMapping("/add-new-address")
+    public String addNewAddress(@ModelAttribute Address address,
             @RequestParam("houseno") String houseno,
-            @RequestParam("locality") String locality,
-            @RequestParam("pincode") String pincode,
-            @RequestParam("state") String state,
-            @RequestParam("district") String district,
             HttpServletRequest request,
             HttpSession session
     )
     {
         User user = (User) session.getAttribute("currentUser");
-        Address address = new Address();
-        address.setHouseNo(houseno);
-        address.setLocality(locality);
-        address.setPincode(pincode);
-        address.setState(state);
-        address.setDistrict(district);
         address.setUser(user);
+        address.setHouseNo(houseno);
+        System.out.println(address.toString());
         addressRepo.save(address);
         List<Address> addresses = addressRepo.findByUser(user);
         session.setAttribute("addressList", addresses);
@@ -90,7 +81,7 @@ public class AddressController {
     }
 
     @Transactional
-    @PostMapping("/deleteAddress")
+    @PostMapping("/delete-address")
     public String deleteAddress(@RequestParam("addressId") String addressId) {
         Address address = addressRepo.findById(Integer.parseInt(addressId)).get();
         address.setUser(null);

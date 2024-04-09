@@ -91,20 +91,11 @@ public class UserService {
 
 		// Setting values in the database
 
-		Cart cart = user.getCart();
+		cartItem.setQuantity(quantity);
+		cartItem.setPrice((quantity)*product.getPrice());
+		cartItemRepo.save(cartItem);
 
-		List<CartItem> cartItems = cart.getCartItems();
-
-		for (CartItem item : cartItems) {
-			if (item.getId() == cartItemId) {
-				item.setQuantity(quantity);
-				item.setPrice((quantity)*product.getPrice());
-				cartItemRepo.save(cartItem);
-			}
-		}
-		cart.setCartItems(cartItems);
-		cartRepo.save(cart);
-
+		System.out.println(response);
 		return response;
 	}
 }

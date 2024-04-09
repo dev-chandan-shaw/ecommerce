@@ -36,7 +36,6 @@ public class CartController {
 	
 	@GetMapping("/cart")
 	public String openCart(HttpSession session) {
-		System.out.println("I am in the start of cart");
 		User user = (User) session.getAttribute("currentUser");
 		Cart cart = cartRepo.findById(user.getCart().getId()).get();
 		session.setAttribute("cartItemList", cart.getCartItems());
@@ -44,13 +43,12 @@ public class CartController {
 		if (cart.getCartItems().size() == 0) {
 			return "emptyCart";
 		}
-		System.out.println("I am in the end of cart");
 		return "cart";
 	}
 	
 	@PostMapping("/add_to_cart")
 	@ResponseBody
-	public User addTocart(@RequestBody Map<String, Integer> data, HttpSession session) {
+	public User addToCart(@RequestBody Map<String, Integer> data, HttpSession session) {
 		User user = (User) session.getAttribute("currentUser");
 		
 		CartItem cartItem = new CartItem();
@@ -67,39 +65,39 @@ public class CartController {
 		cartItems.add(cartItem);
 		cart.setCartItems(cartItems);
 		cartRepo.save(cart);
+
 		return user;
 	}
 	
-	@DeleteMapping("/deleteFromCart")
-	public String deleteFromCart(
-			@RequestParam("userId") String userId,
-			@RequestParam("cartItemId") String cartItemId,
-			HttpSession session)
-	{
-		System.out.println("Code is not working..........");
-		User user = (User) session.getAttribute("currentUser");
-		Cart cart = user.getCart();
-		List<CartItem> cartItems = cart.getCartItems();
-		for (int i=0 ; i<cartItems.size(); i++) {
-			if (cartItems.get(i).getId() == Integer.parseInt(cartItemId)) {
-				cartItems.remove(i);
-				CartItem item = cartItemRepo.findById(Integer.parseInt(cartItemId)).get();
-				item.setProduct(null);
-				cartItemRepo.delete(item);
-				System.out.println("Hello world");
-			}
-		}
-	
-		    
-		cart.setCartItems(cartItems);
-		cart.setUser(user);
-		userRepo.save(user);
-		cartRepo.save(cart);
-		
-		session.setAttribute("items", cartItems.size());
-		
-		return "redirect:/cart";
-	}
+//	@DeleteMapping("/deleteFromCart")
+//	public String deleteFromCart(
+//			@RequestParam("userId") String userId,
+//			@RequestParam("cartItemId") String cartItemId,
+//			HttpSession session)
+//	{
+//		System.out.println("Code is not working..........");
+//		User user = (User) session.getAttribute("currentUser");
+//		Cart cart = user.getCart();
+//		List<CartItem> cartItems = cart.getCartItems();
+//		for (int i=0 ; i<cartItems.size(); i++) {
+//			if (cartItems.get(i).getId() == Integer.parseInt(cartItemId)) {
+//				cartItems.remove(i);
+////				CartItem item = cartItemRepo.findById(Integer.parseInt(cartItemId)).get();
+////				item.setProduct(null);
+//				cartItemRepo.delete(cartItems.get(i));
+//			}
+//		}
+//
+//
+//		cart.setCartItems(cartItems);
+////		cart.setUser(user);
+////		userRepo.save(user);
+//		cartRepo.save(cart);
+//
+//		session.setAttribute("items", cartItems.size());
+//
+//		return "redirect:/cart";
+//	}
 	
 	@DeleteMapping("/delete-cart-item")
 	@ResponseBody

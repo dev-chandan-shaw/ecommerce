@@ -111,7 +111,7 @@ function updateAddress(addressId, houseno, locality, district, pincode, state) {
 	address.innerHTML = `
       <div class="card">
 	      <div class="card-body">
-		      <form action="update_address_from_profile" method="POST">
+		      <form action="update-address" method="POST">
 		      		<div class="row my-2">
 						<div class="col-sm-12">
 							<label>Pincode*</label> <input type="text"
@@ -183,7 +183,7 @@ function openAddressForm() {
 	addressDiv.innerHTML = `
 		  				<div class="card">
 								<div class="card-body">
-									<form action="add_new_address" method="POST">
+									<form action="add-new-address" method="POST">
 										<div class="row my-2">
 											<div class="col-sm-12">
 												<label>Pincode*</label> <input type="text"

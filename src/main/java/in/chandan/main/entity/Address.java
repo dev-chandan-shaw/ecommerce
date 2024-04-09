@@ -15,29 +15,16 @@ public class Address {
 	
 	private String houseNo;
 	private String locality;
-	private String city;
 	private String state;
 	private String pincode;
 	private String district;
-	private String name;
-	private String phone;
+//	private String name;
+//	private String phone;
 	
 	@ManyToOne
 	@JoinColumn(name = "user_id", referencedColumnName = "id")
 	private User user;
-	
-	public String getName() {
-		return name;
-	}
-	public void setName(String name) {
-		this.name = name;
-	}
-	public String getPhone() {
-		return phone;
-	}
-	public void setPhone(String phone) {
-		this.phone = phone;
-	}
+
 	public String getDistrict() {
 		return district;
 	}
@@ -68,12 +55,6 @@ public class Address {
 	public void setLocality(String locality) {
 		this.locality = locality;
 	}
-	public String getCity() {
-		return city;
-	}
-	public void setCity(String city) {
-		this.city = city;
-	}
 	public String getState() {
 		return state;
 	}
@@ -90,7 +71,7 @@ public class Address {
 	@Override
 	public String toString() {
 		// TODO Auto-generated method stub
-		return (houseNo + ", " + locality + ", " + city + ", " + district + ", "  + state + "-" + pincode);
+		return (houseNo + ", " + locality + ", " + district + ", "  + state + "-" + pincode);
 		
 	}
 	

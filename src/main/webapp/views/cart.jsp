@@ -68,7 +68,7 @@ border-bottom-right-radius: 16px;
 
 </style>
 </head>
-<body>
+<body style="background-color: #d2c9ff;">
 <jsp:include page="header.jsp"></jsp:include>
 <%
 		User user =(User) session.getAttribute("currentUser"); 
@@ -76,7 +76,7 @@ border-bottom-right-radius: 16px;
 %>
 
 <div id="custom-message"></div>
-<section class="h-100 h-custom" style="background-color: #d2c9ff;">
+<section class="h-100 h-custom">
   <div class="container py-5 h-100">
     <div class="row d-flex justify-content-center align-items-center h-100">
       <div class="col-12">
@@ -177,14 +177,14 @@ function checkout() {
 			cartItemsId : cartItems
 	}
 	console.log(JSON.stringify(requestBody));
-	fetch('http://localhost:8080/confirm_checkout', {
+	fetch('http://localhost:8080/confirm-checkout', {
 		method: 'POST',
 		headers: {
 			'Content-Type' : 'application/json'
 		},
 		body : JSON.stringify(requestBody)
 	}).then(data => {
-		window.location.href = "http://localhost:8080/place_order"
+		window.location.href = "http://localhost:8080/place-order"
 		return data.json()
 	}).then (data => {
 		console.log(data)

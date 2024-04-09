@@ -72,7 +72,7 @@
 											<p class="text-muted mb-0"><%=address.toString()%></p>
 										</div>
 										<div class="col-sm-2" style="cursor: pointer;">
-											<form action="deleteAddress" method="post" onsubmit="return confirmAddressDelete()">
+											<form action="delete-address" method="post" submit ="return confirmAddressDelete()">
 												<input type="hidden" value="<%=address.getId()%>"
 													name="addressId"> <input type="submit"
 													class="btn btn-danger" value="Delete">

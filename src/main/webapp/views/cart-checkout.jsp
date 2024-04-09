@@ -18,7 +18,7 @@
 	<%
 	User user = (User) session.getAttribute("currentUser");
 	List<Address> addressList = (List<Address>) session.getAttribute("addressList");
-	List<CartItem> cartItems = user.getCart().getCartItems();
+	List<CartItem> cartItems = (List<CartItem>) session.getAttribute("cartItemList");
 	%>
 	<div class="container my-1 py-5">
 
@@ -100,7 +100,7 @@
 
 										<div class="col-sm-2" style="cursor: pointer;">
 											<button class="btn btn-primary"
-												onclick="updateAddress(<%=address.getId()%>,'<%=address.getHouseNo()%>','<%=address.getLocality()%>','<%=address.getCity()%>','<%=address.getPincode()%>', '<%=address.getDistrict()%>',  '<%=address.getState()%>')">Edit</button>
+												onclick="updateAddress(<%=address.getId()%>,'<%=address.getHouseNo()%>','<%=address.getLocality()%>','<%=address.getPincode()%>', '<%=address.getDistrict()%>',  '<%=address.getState()%>')">Edit</button>
 										</div>
 									</div>
 
@@ -174,7 +174,7 @@
 	    
 	}
 
-	function changeCheckoutButton() {
+	function gotoConfirmationPage() {
 		const newDiv = document.createElement('div');
 		window.location.href = "http://localhost:8080/confirmation_page";
 	}
@@ -194,7 +194,7 @@
 		    body: JSON.stringify(orderDetails)
 		}).then(data => {
 			console.log(data);
-			changeCheckoutButton();
+			gotoConfirmationPage();
 		})
 		.catch(error => console.error('Error:', error));
 	}
@@ -210,7 +210,6 @@
           // You can perform further actions based on the selected value here
         });
       });
-    
 	</script>
 </body>
 </html>
