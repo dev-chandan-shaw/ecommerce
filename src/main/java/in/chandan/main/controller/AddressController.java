@@ -64,14 +64,14 @@ public class AddressController {
     }
     @PostMapping("/add-new-address")
     public String addNewAddress(@ModelAttribute Address address,
-            @RequestParam("houseno") String houseno,
+            @RequestParam("houseno") String houseNo,
             HttpServletRequest request,
             HttpSession session
     )
     {
         User user = (User) session.getAttribute("currentUser");
         address.setUser(user);
-        address.setHouseNo(houseno);
+        address.setHouseNo(houseNo);
         System.out.println(address.toString());
         addressRepo.save(address);
         List<Address> addresses = addressRepo.findByUser(user);
