@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -104,7 +105,7 @@ public class OrderController {
         List<CartItem> cartItems = cart.getCartItems();
         cartItemRepo.deleteAllInBatch(cartItems);
         cartItems.clear();
-        cart.setCartItems(cartItems);
+        cart.setCartItems(new ArrayList<>());
         cartRepo.save(cart);
         session.setAttribute("items", 0);
 
@@ -112,7 +113,8 @@ public class OrderController {
     }
 
     @GetMapping("/confirmation_page")
-    public String openconfirmationPage() {
+    public String openconfirmationPage(HttpSession session) {
+        session.setAttribute("items", 0);
         return "confirmation_page";
     }
 
