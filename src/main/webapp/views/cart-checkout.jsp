@@ -74,7 +74,7 @@
 					</div>
 				</div>
 
-				<div class="col-lg-8">
+				<div class="col-lg-8" id="edit_form">
 					<div class="card mb-4 px-3">
 						<div class="card-body" id="addressForm">
 							<div class="row">
@@ -89,7 +89,7 @@
 								<%
 								for (Address address : addressList) {
 								%>
-								<div class="card-body" id="edit_form">
+								<div class="card-body">
 
 									<div class="row" id="<%=address.getId()%>">
 										<div class="col-sm-10">
@@ -100,7 +100,7 @@
 
 										<div class="col-sm-2" style="cursor: pointer;">
 											<button class="btn btn-primary"
-												onclick="updateAddress(<%=address.getId()%>,'<%=address.getHouseNo()%>','<%=address.getLocality()%>','<%=address.getPincode()%>', '<%=address.getDistrict()%>',  '<%=address.getState()%>')">Edit</button>
+												onclick="updateAddress(<%=address.getId()%>,'<%=address.getHouseNo()%>','<%=address.getLocality()%>','<%=address.getDistrict()%>', '<%=address.getPincode()%>',  '<%=address.getState()%>')">Edit</button>
 										</div>
 									</div>
 
