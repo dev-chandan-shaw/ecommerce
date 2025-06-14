@@ -10,7 +10,7 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Shawping | Home</title>
+<title>D_BAZAAR | Home</title>
 <style type="text/css">
 @import
 url('https://fonts.googleapis.com/css2?family=Arvo:ital,wght@0,400;0,700;1,400;1,700&family=Croissant+One&family=Dancing+Script:wght@500&family=Farsan&family=Lobster+Two&family=Poor+Story&family=Tilt+Prism&display=swap')

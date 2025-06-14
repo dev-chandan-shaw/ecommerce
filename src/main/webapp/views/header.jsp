@@ -47,7 +47,7 @@
 			<div style="cursor: pointer;">
 				<a class="navbar-brand my-1" href="/home"
 					class="text-decoration-none"
-					style="font-family: 'Rubik Distressed', cursive; color: white; font-size: xx-large;">SHAWPING</a>
+					style="font-family: 'Rubik Distressed', cursive; color: white; font-size: xx-large;">D_BAZAAR</a>
 			</div>
 			<div>
 				<div class="d-flex align-items-center">
